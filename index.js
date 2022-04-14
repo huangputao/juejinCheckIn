@@ -145,6 +145,9 @@ const getCheckInDays = async () => {
  * 
  */
 const checkIn = async () => {
+  var push_url = "https://sc.ftqq.com/"
+
+
   try {
     // 查询今天是否签到没
     const checkStatusRes = await getCheckStatus()
@@ -158,9 +161,14 @@ const checkIn = async () => {
       const getCheckInDaysRes = await getCheckInDays()
       console.log(`连续签到【${getCheckInDaysRes.continuousDay}】天  总签到天数【${getCheckInDaysRes.sumCount}】  掘金不停 签到不断💪`)
 
+      push_url = push_url + process.env.pushKey + ".send?text=" + '掘金签到成功!' + "&desp=" + `签到成功+${checkInRes.data.incr_point}矿石，总矿石${checkInRes.data.sum_point}`+`连续签到【${getCheckInDaysRes.continuousDay}】天  总签到天数【${getCheckInDaysRes.sumCount}】  掘金不停 签到不断💪`
+
+      const push_service = await axios({ push_url, method: 'get' })
       // 签到成功 去抽奖
       await draw()
     } else {
+      push_url = push_url + process.env.pushKey + ".send?text=" + '今日掘金已签到' + "&desp=" + '今日掘金已签到'
+      const push_service = await axios({ push_url, method: 'get' })
       console.log('今日已经签到 ✅')
     }
 
