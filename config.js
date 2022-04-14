@@ -19,6 +19,9 @@ module.exports = {
     // 获取沾喜气列表用户
     getLuckyUserList: '/growth_api/v1/lottery_history/global_big',
     // 沾喜气
-    dipLucky: '/growth_api/v1/lottery_lucky/dip_lucky'
+    dipLucky: '/growth_api/v1/lottery_lucky/dip_lucky',
+    // 推送
+    // sendKey: 'SCT139146TRfrl1FypfGLsWb9hGmFTCgnL',
+    sendKey: 'SCU103469T03605dc67ebcac33855fd708308f45365efb09aed848d',
   },
 }
