@@ -161,20 +161,21 @@ const checkIn = async () => {
       console.log(`连续签到【${getCheckInDaysRes.continuousDay}】天  总签到天数【${getCheckInDaysRes.sumCount}】  掘金不停 签到不断💪`)
 
       serviceUrl = push_url + push_key + ".send?text=" + '掘金签到成功!' + "&desp=" + "掘金签到成功"
-
-      const push_service = await axios({ serviceUrl, method: 'get' })
+      push(serviceUrl)
+      // const push_service = await axios({ serviceUrl, method: 'get' })
       // 签到成功 去抽奖
       await draw()
     } else {
       serviceUrl = push_url + push_key + ".send?text=" + '今日掘金已签到' + "&desp=" + "今日掘金已签到"
-      const push_service = await axios({ serviceUrl, method: 'get' })
-
+      // const push_service = await axios({ serviceUrl, method: 'get' })
+      push(serviceUrl)
       console.log('今日已经签到 ✅')
     }
 
   } catch (error) {
     serviceUrl = push_url + push_key + ".send?text=" + '签到失败!' + "&desp=" + "签到失败!"
-    const push_service = await axios({ serviceUrl, method: 'get' })
+    // const push_service = await axios({ serviceUrl, method: 'get' })
+    push(serviceUrl)
     console.error(`签到失败!=======> ${error}`)
   }
 }
@@ -214,7 +215,9 @@ const sendEmail = async () => {
 
 }
 
-
+function push(url) {
+  axios.get(url)
+}
 /**
  * 启动程序  处理日志输出 开始签到流程 将结果通过邮件形式发送
  *
