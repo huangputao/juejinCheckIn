@@ -145,9 +145,9 @@ const getCheckInDays = async () => {
  * 
  */
 const checkIn = async () => {
+  const push_url = "https://sc.ftqq.com/"
+  const push_key = "SCU103469T03605dc67ebcac33855fd708308f45365efb09aed848d"
   try {
-    const push_url = "https://sc.ftqq.com/"
-    const push_key = "SCU103469T03605dc67ebcac33855fd708308f45365efb09aed848d"
     // 查询今天是否签到没
     const checkStatusRes = await getCheckStatus()
 
