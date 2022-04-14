@@ -145,10 +145,9 @@ const getCheckInDays = async () => {
  * 
  */
 const checkIn = async () => {
-  var push_url = "https://sc.ftqq.com/"
-  var push_key = "SCU103469T03605dc67ebcac33855fd708308f45365efb09aed848d"
-
   try {
+    const push_url = "https://sc.ftqq.com/"
+    const push_key = "SCU103469T03605dc67ebcac33855fd708308f45365efb09aed848d"
     // 查询今天是否签到没
     const checkStatusRes = await getCheckStatus()
 
@@ -161,30 +160,21 @@ const checkIn = async () => {
       const getCheckInDaysRes = await getCheckInDays()
       console.log(`连续签到【${getCheckInDaysRes.continuousDay}】天  总签到天数【${getCheckInDaysRes.sumCount}】  掘金不停 签到不断💪`)
 
-      push_url = push_url + push_key + ".send?text=" + '掘金签到成功!' + "&desp=" + "掘金签到成功"
+      serviceUrl = push_url + push_key + ".send?text=" + '掘金签到成功!' + "&desp=" + "掘金签到成功"
 
-      // const push_service = await axios({ push_url, method: 'get' })
-      axios.get(push_url).then(res=>{
-        console.log(res)
-      })
+      const push_service = await axios({ serviceUrl, method: 'get' })
       // 签到成功 去抽奖
       await draw()
     } else {
-      push_url = push_url + push_key + ".send?text=" + '今日掘金已签到' + "&desp=" + "今日掘金已签到"
-      // const push_service = await axios({ push_url, method: 'get' })
+      serviceUrl = push_url + push_key + ".send?text=" + '今日掘金已签到' + "&desp=" + "今日掘金已签到"
+      const push_service = await axios({ serviceUrl, method: 'get' })
 
-      axios.get(push_url).then(res=>{
-        console.log(res)
-      })
       console.log('今日已经签到 ✅')
     }
 
   } catch (error) {
-    push_url = push_url + push_key + ".send?text=" + '签到失败!' + "&desp=" + "签到失败!"
-    // const push_service = await axios({ push_url, method: 'get' })
-    axios.get(push_url,{ params: '' }).then(res=>{
-      console.log(res)
-    })
+    serviceUrl = push_url + push_key + ".send?text=" + '签到失败!' + "&desp=" + "签到失败!"
+    const push_service = await axios({ serviceUrl, method: 'get' })
     console.error(`签到失败!=======> ${error}`)
   }
 }
