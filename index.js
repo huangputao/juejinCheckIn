@@ -176,7 +176,7 @@ const checkIn = async () => {
       await pushMsg({text: tip, desc: 'error'})
     } else {
       console.log('今日已经签到')
-      pushMsg({text: 'hadChecked', desc: 'hadChecked'})
+      pushMsg({text: '今日已经签到', desc: '今日已经签到'})
     }
 
   } catch (error) {
