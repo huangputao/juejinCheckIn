@@ -1,4 +1,4 @@
-// 配置文件
+// 配置文件,测试修改配置文件
 module.exports = {
   // 请求地址
   baseUrl: 'https://api.juejin.cn',
